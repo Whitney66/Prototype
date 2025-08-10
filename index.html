@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月度经营看板 - 集团数据集成平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 头部导航 -->
+        <header class="header">
+            <div class="header-left">
+                <h1>集团月度经营看板</h1>
+                <div class="date-info">
+                    <span id="current-date"></span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="refresh-btn" onclick="refreshData()">
+                    <span>🔄</span> 刷新数据
+                </div>
+            </div>
+        </header>
+
+        <!-- 导航菜单 -->
+        <nav class="nav-menu">
+            <div class="nav-item active" onclick="switchPage(1)">
+                <span class="nav-icon">📊</span>
+                <span>总体经营情况</span>
+            </div>
+            <div class="nav-item" onclick="switchPage(2)">
+                <span class="nav-icon">🏪</span>
+                <span>渠道运营情况</span>
+            </div>
+            <div class="nav-item" onclick="switchPage(3)">
+                <span class="nav-icon">👥</span>
+                <span>客户运营情况</span>
+            </div>
+            <div class="nav-item" onclick="switchPage(4)">
+                <span class="nav-icon">📦</span>
+                <span>产品运营情况</span>
+            </div>
+        </nav>
+
+        <!-- 页面1: 总体经营情况 -->
+        <div id="page1" class="page active">
+            <div class="page-title">总体经营情况</div>
+            
+            <!-- 核心指标卡片 -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h3>营业收入</h3>
+                        <span class="metric-icon">💰</span>
+                    </div>
+                    <div class="metric-value">
+                        <span class="value">458.6</span>
+                        <span class="unit">亿元</span>
+                    </div>
+                    <div class="metric-details">
+                        <div class="detail-item">
+                            <span>本年累计:</span>
+                            <span class="value-positive">+12.5%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>预算完成率:</span>
+                            <span class="value-positive">108.3%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h3>净利润</h3>
+                        <span class="metric-icon">📈</span>
+                    </div>
+                    <div class="metric-value">
+                        <span class="value">68.9</span>
+                        <span class="unit">亿元</span>
+                    </div>
+                    <div class="metric-details">
+                        <div class="detail-item">
+                            <span>去年同期:</span>
+                            <span class="value-positive">+15.2%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>毛利率:</span>
+                            <span>24.8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h3>归母净利润</h3>
+                        <span class="metric-icon">🏆</span>
+                    </div>
+                    <div class="metric-value">
+                        <span class="value">52.3</span>
+                        <span class="unit">亿元</span>
+                    </div>
+                    <div class="metric-details">
+                        <div class="detail-item">
+                            <span>同比增长:</span>
+                            <span class="value-positive">+18.7%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>预算完成:</span>
+                            <span class="value-positive">112.1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h3>净资产收益率</h3>
+                        <span class="metric-icon">📊</span>
+                    </div>
+                    <div class="metric-value">
+                        <span class="value">16.8</span>
+                        <span class="unit">%</span>
+                    </div>
+                    <div class="metric-details">
+                        <div class="detail-item">
+                            <span>行业平均:</span>
+                            <span class="value-positive">+3.2%</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>目标达成:</span>
+                            <span class="value-positive">105.6%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 趋势图表区域 -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>月度营业收入趋势</h3>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>月度净利润趋势</h3>
+                    <canvas id="profitChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 关键业务指标 -->
+            <div class="business-metrics">
+                <div class="business-metric">
+                    <div class="metric-name">零售业务周转率</div>
+                    <div class="metric-value-large">8.2<span class="unit">次</span></div>
+                    <div class="metric-change positive">+0.5</div>
+                </div>
+                <div class="business-metric">
+                    <div class="metric-name">海南区域营收</div>
+                    <div class="metric-value-large">85.6<span class="unit">亿</span></div>
+                    <div class="metric-change positive">+22.1%</div>
+                </div>
+                <div class="business-metric">
+                    <div class="metric-name">线上完税GMV</div>
+                    <div class="metric-value-large">126.8<span class="unit">亿</span></div>
+                    <div class="metric-change positive">+35.7%</div>
+                </div>
+                <div class="business-metric">
+                    <div class="metric-name">国际化业务占比</div>
+                    <div class="metric-value-large">28.5<span class="unit">%</span></div>
+                    <div class="metric-change positive">+3.2%</div>
+                </div>
+                <div class="business-metric">
+                    <div class="metric-name">国潮商品销售额</div>
+                    <div class="metric-value-large">42.3<span class="unit">亿</span></div>
+                    <div class="metric-change positive">+48.9%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面2: 渠道运营情况 -->
+        <div id="page2" class="page">
+            <div class="page-title">渠道运营情况</div>
+            
+            <!-- 渠道概览 -->
+            <div class="channel-overview">
+                <div class="channel-card">
+                    <div class="channel-header">
+                        <h3>线下门店</h3>
+                        <span class="channel-icon">🏪</span>
+                    </div>
+                    <div class="channel-metrics">
+                        <div class="metric">
+                            <span class="label">营收贡献</span>
+                            <span class="value">286.5亿</span>
+                            <span class="percentage">62.4%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">门店数量</span>
+                            <span class="value">1,256</span>
+                            <span class="change">+28</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="channel-card">
+                    <div class="channel-header">
+                        <h3>线上平台</h3>
+                        <span class="channel-icon">💻</span>
+                    </div>
+                    <div class="channel-metrics">
+                        <div class="metric">
+                            <span class="label">营收贡献</span>
+                            <span class="value">126.8亿</span>
+                            <span class="percentage">27.6%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">月活用户</span>
+                            <span class="value">2,856万</span>
+                            <span class="change">+12.5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="channel-card">
+                    <div class="channel-header">
+                        <h3>批发渠道</h3>
+                        <span class="channel-icon">📦</span>
+                    </div>
+                    <div class="channel-metrics">
+                        <div class="metric">
+                            <span class="label">营收贡献</span>
+                            <span class="value">45.3亿</span>
+                            <span class="percentage">10.0%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">合作伙伴</span>
+                            <span class="value">1,685</span>
+                            <span class="change">+156</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 渠道趋势图 -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>各渠道月度营收趋势</h3>
+                    <canvas id="channelRevenueChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>渠道占比分布</h3>
+                    <canvas id="channelPieChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 渠道效率指标 -->
+            <div class="efficiency-metrics">
+                <div class="efficiency-card">
+                    <h4>坪效指标</h4>
+                    <div class="efficiency-value">3.8万元/㎡</div>
+                    <div class="efficiency-change positive">+8.2%</div>
+                </div>
+                <div class="efficiency-card">
+                    <h4>人效指标</h4>
+                    <div class="efficiency-value">156万元/人</div>
+                    <div class="efficiency-change positive">+12.5%</div>
+                </div>
+                <div class="efficiency-card">
+                    <h4>获客成本</h4>
+                    <div class="efficiency-value">68元/人</div>
+                    <div class="efficiency-change negative">-5.3%</div>
+                </div>
+                <div class="efficiency-card">
+                    <h4>转化率</h4>
+                    <div class="efficiency-value">12.8%</div>
+                    <div class="efficiency-change positive">+1.2%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面3: 客户运营情况 -->
+        <div id="page3" class="page">
+            <div class="page-title">客户运营情况</div>
+            
+            <!-- 客户概览 -->
+            <div class="customer-overview">
+                <div class="customer-card">
+                    <div class="customer-header">
+                        <h3>总客户数</h3>
+                        <span class="customer-icon">👥</span>
+                    </div>
+                    <div class="customer-value">2,856万</div>
+                    <div class="customer-change positive">+12.5%</div>
+                </div>
+
+                <div class="customer-card">
+                    <div class="customer-header">
+                        <h3>活跃客户</h3>
+                        <span class="customer-icon">🔥</span>
+                    </div>
+                    <div class="customer-value">1,286万</div>
+                    <div class="customer-change positive">+8.7%</div>
+                </div>
+
+                <div class="customer-card">
+                    <div class="customer-header">
+                        <h3>新增客户</h3>
+                        <span class="customer-icon">🆕</span>
+                    </div>
+                    <div class="customer-value">358万</div>
+                    <div class="customer-change positive">+15.2%</div>
+                </div>
+
+                <div class="customer-card">
+                    <div class="customer-header">
+                        <h3>客户留存率</h3>
+                        <span class="customer-icon">💎</span>
+                    </div>
+                    <div class="customer-value">78.6%</div>
+                    <div class="customer-change positive">+2.1%</div>
+                </div>
+            </div>
+
+            <!-- 客户价值分析 -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>客户价值分布</h3>
+                    <canvas id="customerValueChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>客户生命周期价值</h3>
+                    <canvas id="customerLifetimeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 客户行为指标 -->
+            <div class="behavior-metrics">
+                <div class="behavior-card">
+                    <h4>客单价</h4>
+                    <div class="behavior-value">586元</div>
+                    <div class="behavior-change positive">+12.3%</div>
+                    <div class="behavior-detail">较去年同期提升</div>
+                </div>
+                <div class="behavior-card">
+                    <h4>复购率</h4>
+                    <div class="behavior-value">42.6%</div>
+                    <div class="behavior-change positive">+3.8%</div>
+                    <div class="behavior-detail">月度复购率</div>
+                </div>
+                <div class="behavior-card">
+                    <h4>购买频次</h4>
+                    <div class="behavior-value">3.2次/月</div>
+                    <div class="behavior-change positive">+0.5</div>
+                    <div class="behavior-detail">人均购买频次</div>
+                </div>
+                <div class="behavior-card">
+                    <h4>会员占比</h4>
+                    <div class="behavior-value">68.9%</div>
+                    <div class="behavior-change positive">+5.2%</div>
+                    <div class="behavior-detail">活跃会员占比</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面4: 产品运营情况 -->
+        <div id="page4" class="page">
+            <div class="page-title">产品运营情况</div>
+            
+            <!-- 产品概览 -->
+            <div class="product-overview">
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>香化美妆</h3>
+                        <span class="product-icon">💄</span>
+                    </div>
+                    <div class="product-metrics">
+                        <div class="metric">
+                            <span class="label">销售额</span>
+                            <span class="value">186.5亿</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">占比</span>
+                            <span class="percentage">40.7%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">增长</span>
+                            <span class="change positive">+18.5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>精品服饰</h3>
+                        <span class="product-icon">👗</span>
+                    </div>
+                    <div class="product-metrics">
+                        <div class="metric">
+                            <span class="label">销售额</span>
+                            <span class="value">128.9亿</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">占比</span>
+                            <span class="percentage">28.1%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">增长</span>
+                            <span class="change positive">+12.3%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>食品饮料</h3>
+                        <span class="product-icon">🍫</span>
+                    </div>
+                    <div class="product-metrics">
+                        <div class="metric">
+                            <span class="label">销售额</span>
+                            <span class="value">95.2亿</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">占比</span>
+                            <span class="percentage">20.8%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">增长</span>
+                            <span class="change positive">+8.7%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>其他商品</h3>
+                        <span class="product-icon">🎁</span>
+                    </div>
+                    <div class="product-metrics">
+                        <div class="metric">
+                            <span class="label">销售额</span>
+                            <span class="value">48.0亿</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">占比</span>
+                            <span class="percentage">10.4%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">增长</span>
+                            <span class="change positive">+25.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品分析图表 -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>产品类别销售趋势</h3>
+                    <canvas id="productTrendChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>产品毛利率对比</h3>
+                    <canvas id="productMarginChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 国潮商品专区 -->
+            <div class="guochao-section">
+                <h3>国潮商品专区</h3>
+                <div class="guochao-metrics">
+                    <div class="guochao-card">
+                        <h4>国潮商品销售额</h4>
+                        <div class="guochao-value">42.3亿元</div>
+                        <div class="guochao-change positive">+48.9%</div>
+                    </div>
+                    <div class="guochao-card">
+                        <h4>国潮品牌数量</h4>
+                        <div class="guochao-value">285个</div>
+                        <div class="guochao-change positive">+52</div>
+                    </div>
+                    <div class="guochao-card">
+                        <h4>国潮商品占比</h4>
+                        <div class="guochao-value">9.2%</div>
+                        <div class="guochao-change positive">+2.1%</div>
+                    </div>
+                    <div class="guochao-card">
+                        <h4>国潮客户偏好度</h4>
+                        <div class="guochao-value">73.6%</div>
+                        <div class="guochao-change positive">+8.4%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
