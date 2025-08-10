@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>月度经营看板 - 原型</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand">集团月度经营分析看板</div>
+      <div class="sub">数据驱动 决策增强 风险预警</div>
+    </div>
+    <div class="header-right">
+      <div class="filter-group">
+        <label for="monthSelect">月份</label>
+        <select id="monthSelect" class="control">
+          <option value="1">1月</option>
+          <option value="2">2月</option>
+          <option value="3">3月</option>
+          <option value="4">4月</option>
+          <option value="5">5月</option>
+          <option value="6">6月</option>
+          <option value="7">7月</option>
+          <option value="8">8月</option>
+          <option value="9">9月</option>
+          <option value="10">10月</option>
+          <option value="11">11月</option>
+          <option value="12">12月</option>
+        </select>
+      </div>
+      <div class="now">数据时间：<span id="dataTime"></span></div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-page="overview">总体经营情况</button>
+    <button class="tab" data-page="channel">渠道运营情况</button>
+    <button class="tab" data-page="customer">客户运营情况</button>
+    <button class="tab" data-page="product">产品运营情况</button>
+  </nav>
+
+  <main id="app">
+    <section id="page-overview" class="page active">
+      <div class="kpi-grid" id="kpi-overview"></div>
+      <div class="chart-grid">
+        <div class="panel">
+          <div class="panel-title">月度经营收入趋势</div>
+          <div id="overviewRevenueTrend" class="chart"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">月度净利润趋势</div>
+          <div id="overviewNetProfitTrend" class="chart"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-channel" class="page">
+      <div class="kpi-grid" id="kpi-channel"></div>
+      <div class="chart-grid">
+        <div class="panel">
+          <div class="panel-title">渠道营收结构占比</div>
+          <div id="channelMixChart" class="chart"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">渠道毛利率与预算完成率</div>
+          <div id="channelMarginBudgetChart" class="chart"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-customer" class="page">
+      <div class="kpi-grid" id="kpi-customer"></div>
+      <div class="chart-grid">
+        <div class="panel">
+          <div class="panel-title">区域营收对比（含海南）</div>
+          <div id="customerRegionChart" class="chart"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">客户分层占比</div>
+          <div id="customerSegmentChart" class="chart"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-product" class="page">
+      <div class="kpi-grid" id="kpi-product"></div>
+      <div class="chart-grid">
+        <div class="panel">
+          <div class="panel-title">品类销售额 Top10</div>
+          <div id="productCategorySalesChart" class="chart"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">品类毛利率散点</div>
+          <div id="productCategoryMarginScatter" class="chart"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">© 集团数据集成平台 · 原型 | ECharts</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <script src="./data/mockData.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
