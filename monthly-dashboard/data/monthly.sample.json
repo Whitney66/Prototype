@@ -1,0 +1,96 @@
+{
+  "meta": { "company": "集团样例", "period": "2025-07" },
+  "overall": {
+    "kpis": {
+      "revenue": 215.4,
+      "netProfit": 34.2,
+      "parentNetProfit": 30.1,
+      "roe": 0.135,
+      "grossMargin": 0.322,
+      "ytdRevenue": 1287.9,
+      "ytdRevenueLastYear": 1175.3,
+      "yoyRevenue": 0.096,
+      "budgetRevenue": 2400.0,
+      "budgetCompletionRevenue": 0.536,
+      "internationalShare": 0.27
+    },
+    "monthlyRevenue": [
+      {"month":"2025-01","value":180.3},
+      {"month":"2025-02","value":165.9},
+      {"month":"2025-03","value":190.7},
+      {"month":"2025-04","value":205.2},
+      {"month":"2025-05","value":210.6},
+      {"month":"2025-06","value":220.9},
+      {"month":"2025-07","value":215.4}
+    ],
+    "monthlyNetProfit": [
+      {"month":"2025-01","value":28.1},
+      {"month":"2025-02","value":26.8},
+      {"month":"2025-03","value":30.4},
+      {"month":"2025-04","value":31.7},
+      {"month":"2025-05","value":33.2},
+      {"month":"2025-06","value":35.6},
+      {"month":"2025-07","value":34.2}
+    ]
+  },
+  "channels": {
+    "revenueByChannel": [
+      {"name":"线下门店","value":145.2},
+      {"name":"线上完税","value":52.8},
+      {"name":"离岛免税","value":17.4}
+    ],
+    "onlineTaxPaidGMV": 52.8,
+    "turnoverRate": 8.6,
+    "hainanRevenue": 28.3,
+    "hainanMonthly": [
+      {"month":"2025-01","value":3.1},
+      {"month":"2025-02","value":3.6},
+      {"month":"2025-03","value":3.9},
+      {"month":"2025-04","value":4.1},
+      {"month":"2025-05","value":4.5},
+      {"month":"2025-06","value":4.8},
+      {"month":"2025-07","value":4.3}
+    ],
+    "internationalShare": 0.27,
+    "onlineTaxPaidMonthly": [
+      {"month":"2025-01","value":32.1},
+      {"month":"2025-02","value":28.4},
+      {"month":"2025-03","value":35.2},
+      {"month":"2025-04","value":41.8},
+      {"month":"2025-05","value":45.3},
+      {"month":"2025-06","value":50.6},
+      {"month":"2025-07","value":52.8}
+    ]
+  },
+  "customers": {
+    "activeMonthly": [
+      {"month":"2025-01","value":120.0},
+      {"month":"2025-02","value":112.5},
+      {"month":"2025-03","value":130.4},
+      {"month":"2025-04","value":138.9},
+      {"month":"2025-05","value":142.3},
+      {"month":"2025-06","value":150.2},
+      {"month":"2025-07","value":148.7}
+    ],
+    "newMonthly": [
+      {"month":"2025-01","value":12.1},
+      {"month":"2025-02","value":10.4},
+      {"month":"2025-03","value":13.2},
+      {"month":"2025-04","value":14.8},
+      {"month":"2025-05","value":15.3},
+      {"month":"2025-06","value":16.6},
+      {"month":"2025-07","value":16.1}
+    ],
+    "repeatRate": 0.62
+  },
+  "products": {
+    "categorySales": [
+      {"name":"美妆","value":86.4},
+      {"name":"酒水","value":42.7},
+      {"name":"食品","value":38.9},
+      {"name":"香氛","value":24.5},
+      {"name":"箱包","value":22.1}
+    ],
+    "guochaoSales": 12.7
+  }
+}

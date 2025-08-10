@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>月度经营看板 - 渠道运营情况</title>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">月度经营看板</div>
+    <nav class="nav">
+      <a href="./index.html">总体经营</a>
+      <a class="active" href="./channels.html">渠道运营</a>
+      <a href="./customers.html">客户运营</a>
+      <a href="./products.html">产品运营</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>渠道关键指标</h2>
+      <div class="kpi-grid kpi-grid-5">
+        <div class="kpi small">
+          <div class="kpi-label">线上完税GMV</div>
+          <div id="kpi-online-gmv" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：亿</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">周转率</div>
+          <div id="kpi-turnover" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：次</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">海南区域营收</div>
+          <div id="kpi-hainan" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：亿</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">国际化业务占比</div>
+          <div id="kpi-international" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：%</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">毛利率</div>
+          <div id="kpi-gross-margin-chan" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：%</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="card">
+        <div class="card-title">渠道营收分布</div>
+        <div id="chart-channel-revenue" class="chart"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">渠道营收占比</div>
+        <div id="chart-channel-share" class="chart"></div>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="card">
+        <div class="card-title">海南区域营收月度趋势</div>
+        <div id="chart-hainan-trend" class="chart"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">线上完税GMV与收入对比</div>
+        <div id="chart-online-compare" class="chart"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">数据来源：集团数据集成平台（样例数据）</footer>
+
+  <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/channels.js"></script>
+</body>
+</html>
