@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>月度经营看板 - 总体经营情况</title>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">月度经营看板</div>
+    <nav class="nav">
+      <a class="active" href="./index.html">总体经营</a>
+      <a href="./channels.html">渠道运营</a>
+      <a href="./customers.html">客户运营</a>
+      <a href="./products.html">产品运营</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>总体指标</h2>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-label">营业收入</div>
+          <div id="kpi-revenue" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：亿</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">净利润</div>
+          <div id="kpi-net-profit" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：亿</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">归母净利润</div>
+          <div id="kpi-parent-net-profit" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：亿</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">净资产收益率(ROE)</div>
+          <div id="kpi-roe" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：%</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>经营分析补充指标</h3>
+      <div class="kpi-grid kpi-grid-6">
+        <div class="kpi small">
+          <div class="kpi-label">毛利率</div>
+          <div id="kpi-gross-margin" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：%</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">本年累计收入</div>
+          <div id="kpi-ytd-revenue" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：亿</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">去年同期收入</div>
+          <div id="kpi-ytd-last-year" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：亿</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">收入同比</div>
+          <div id="kpi-yoy-revenue" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：%</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">本年预算收入</div>
+          <div id="kpi-budget-revenue" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：亿</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">预算完成率</div>
+          <div id="kpi-budget-completion" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：%</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="card">
+        <div class="card-title">月度经营收入趋势</div>
+        <div id="chart-revenue" class="chart"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">月度净利润趋势</div>
+        <div id="chart-net-profit" class="chart"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">数据来源：集团数据集成平台（样例数据）</footer>
+
+  <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/overall.js"></script>
+</body>
+</html>

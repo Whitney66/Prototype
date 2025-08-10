@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>月度经营看板 - 客户运营情况</title>
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">月度经营看板</div>
+    <nav class="nav">
+      <a href="./index.html">总体经营</a>
+      <a href="./channels.html">渠道运营</a>
+      <a class="active" href="./customers.html">客户运营</a>
+      <a href="./products.html">产品运营</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>客户关键指标</h2>
+      <div class="kpi-grid kpi-grid-4">
+        <div class="kpi small">
+          <div class="kpi-label">月活客户</div>
+          <div id="kpi-active-customers" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：万</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">新增客户</div>
+          <div id="kpi-new-customers" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：万</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">复购率</div>
+          <div id="kpi-repeat-rate" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：%</div>
+        </div>
+        <div class="kpi small">
+          <div class="kpi-label">国际化业务占比</div>
+          <div id="kpi-international-cus" class="kpi-value">--</div>
+          <div class="kpi-sub">单位：%</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="card">
+        <div class="card-title">活跃客户月度趋势</div>
+        <div id="chart-active" class="chart"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">新增客户月度趋势</div>
+        <div id="chart-new" class="chart"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">数据来源：集团数据集成平台（样例数据）</footer>
+
+  <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/customers.js"></script>
+</body>
+</html>
